@@ -1,0 +1,103 @@
+
+<!DOCTYPE html>
+	<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>News Aggregator</title>
+
+	</head>
+	<body>
+	<div class="box-wrap">
+		<header role="banner" id="fh5co-header">
+			<div class="container">
+				<nav class="navbar navbar-default">
+					<div class="row">
+						<div class="col-md-3">
+							<div class="fh5co-navbar-brand">
+								<a class="fh5co-logo" href="/"><img width=50px; src="https://media-central.indianexpress.com/static/images/ie-logo.jpeg" alt="News Aggregator Logo"></a>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<ul class="nav text-center">
+								<li class="active"><a href="/" title="News Aggregator"><span class="home">Home</span></a></li>
+								<li>
+									<div class="dropdown dropdown-changes">
+										<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+									  	Explore
+									  	<span class="caret"></span>
+										</button>
+										<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+										{% for category in category_data %}
+									  		<li style="display:block !important;"><a href="/category/{{category.slug}}" class="dropdown-menu-items">{{category.name}}</a></li>
+										{% endfor %}
+										</ul>
+								  </div></li>
+								<!-- <li><a href="services.html">Services</a></li>
+								<li><a href="contact.html">Contact</a></li> -->
+							</ul>
+						</div>
+						<div class="col-md-3">
+							<ul class="social">
+								<li>
+									<a href="{{ twitter_link }}">
+										<i class="icon-twitter"></i>
+									</a>
+								</li>
+								<li>
+									<a href="{{ fb_link }}">
+										<i class="icon-facebook-square"></i>
+									</a>
+								</li>
+								<li>
+									<a href="{{ linkedIn_link }}">
+										<i class="icon-linkedin-square"></i>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</nav>
+		  </div>
+		</header>
+		
+		<section id="product">
+			<div class="container">
+				<div class="row">
+					<div class="post-entry">
+						{% for related_article in recent_articles %}
+						<div class="col-md-6">
+							<div class="post animate-box">
+								<a href="/article/{{related_article.title_slug}}/{{related_article.id}}/" title="{{related_article.title}}"><img src="{{related_article.image}}" alt="{{related_article.title}} - Image" width="150px"></a>
+								<div>
+									<h3><a href="/article/{{related_article.title_slug}}/{{related_article.id}}/" title="{{related_article.title}}">{{related_article.title}}</a></h3>
+									<p>{{related_article.short_description}}</p>
+									<span><a href="/article/{{related_article.title_slug}}/{{related_article.id}}/" title="{{related_article.title}}">Learn More...</a></span>
+								</div>
+							</div>
+						</div>
+						{% endfor %}
+
+					</div>
+				</div>
+			</div>
+		</section>
+
+		{% include 'footer.html'%}
+	</div>
+	<!-- END: box-wrap -->
+	
+	<!-- jQuery -->
+	<script src="{{STATIC_URL}}js/jquery.min.js"></script>
+	<!-- jQuery Easing -->
+	<script src="{{STATIC_URL}}js/jquery.easing.1.3.js"></script>
+	<!-- Bootstrap -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<!-- Waypoints -->
+	<script src="{{STATIC_URL}}js/jquery.waypoints.min.js"></script>
+
+	<!-- Main JS (Do not remove) -->
+	<script src="{{STATIC_URL}}js/main.js"></script>
+
+	</body>
+</html>
+
